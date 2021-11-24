@@ -34,8 +34,8 @@ const Tours = () => {
   }
 
   if (oursData.length <= 0) {
-    setOurData('')
-    return <h2>No Tours Left</h2>
+    setOurData(''); // dont set string on array
+    return <h2>No Tours Left</h2>;
   }
   return (
     <React.Fragment>
