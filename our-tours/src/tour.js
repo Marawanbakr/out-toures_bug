@@ -1,14 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { data } from './ourdata'
 
 const Tours = () => {
   const [oursData, setOurData] = useState(data)
-
   const removeItem = (id) => {
     let card = oursData.filter((item) => item.id !== id)
     setOurData(card)
   }
-
   const ReadMore = ({ children }) => {
     const text = children
     console.log
@@ -25,9 +23,23 @@ const Tours = () => {
       </p>
     )
   }
+
+  const clickToReStore = () => {
+    useEffect(() => {
+      setOurData(data)
+    })
+  }
+  {
+    /* <button onClick={clickToReStore}>click</button> */
+  }
+
+  if (oursData.length <= 0) {
+    setOurData('')
+    return <h2>No Tours Left</h2>
+  }
   return (
     <React.Fragment>
-      {oursData.map((card) => {
+      {oursData.map((card, index, arr) => {
         const { id, img, title, heading, price, button } = card
         return (
           <div key={id} className='card'>
